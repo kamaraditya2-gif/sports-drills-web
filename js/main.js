@@ -17,6 +17,7 @@
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
       toggle.setAttribute('aria-expanded', nav.classList.contains('active'));
+      document.body.classList.toggle('menu-open', nav.classList.contains('active'));
     });
 
     // Close menu when clicking a link
@@ -24,6 +25,7 @@
       link.addEventListener('click', () => {
         nav.classList.remove('active');
         toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
       });
     });
   }
