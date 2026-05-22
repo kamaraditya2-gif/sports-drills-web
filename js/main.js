@@ -265,6 +265,20 @@
   }
 
   // ============================================
+  // POWERED BY DEEPSEEK
+  // ============================================
+  function initPoweredBy() {
+    const footerBottom = document.querySelector('.footer-bottom');
+    if (!footerBottom) return;
+    const span = document.createElement('span');
+    span.style.marginLeft = 'auto';
+    span.style.fontSize = '0.75rem';
+    span.style.color = 'var(--text-muted)';
+    span.innerText = 'Tingkatkan Performamu dengan Drill Profesional — powered by DeepSeek';
+    footerBottom.appendChild(span);
+  }
+
+  // ============================================
   // INIT
   // ============================================
   document.addEventListener('DOMContentLoaded', () => {
@@ -278,5 +292,6 @@
     initSearch();
     initAdSlots();
     initFooterYear();
+    initPoweredBy();
   });
 })();
