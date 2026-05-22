@@ -9,6 +9,6 @@ REMOTE_DIR="public_html/"
 # Use environment variable for password (safer than command line)
 export SSHPASS='+E]7SGc8lX82rq'
 
-rsync -avz --delete --rsh='sshpass -e ssh -p 21' --exclude '.git' --exclude '.gitignore' ./ "${USER}@${SERVER}:${REMOTE_DIR}"
+rsync -avz --delete --progress --stats --rsh='sshpass -e ssh -p 21' --exclude '.git' --exclude '.gitignore' ./ "${USER}@${SERVER}:${REMOTE_DIR}"
 echo "Done."
 echo "NOTE: Files have been copied to ${REMOTE_DIR}. Verify by visiting the site."
