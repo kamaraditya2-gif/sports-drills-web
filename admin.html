@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Daddy's Sports Hub</title>
+  <meta name="description" content="Admin Panel Daddy's Sports Hub - Kelola konten drill, berita, dan coach.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="admin-login">
+    <div class="admin-login-box">
+      <h2>🔐 Admin Panel</h2>
+      <p>Masukkan password untuk mengelola konten</p>
+      <form id="login-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <input type="password" id="admin-pass" class="form-input" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+      </form>
+      <p style="color:var(--text-muted);font-size:0.8rem;text-align:center;margin-top:1rem;">Default: admin123</p>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="admin-panel" class="admin-panel" style="display:none;">
+    <header class="header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏆</div>
+          <span>Admin Hub</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">← Kembali ke Site</a>
+          <a href="#" onclick="adminLogout();return false;">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="admin-grid">
+        <aside class="admin-sidebar">
+          <h3>Menu</h3>
+          <nav class="admin-nav">
+            <a href="#" class="active" onclick="showTab('dashboard');return false;">📊 Dashboard</a>
+            <a href="#" onclick="showTab('drills');return false;">🔥 Kelola Drills</a>
+            <a href="#" onclick="showTab('news');return false;">📰 Kelola Berita</a>
+            <a href="#" onclick="showTab('coaches');return false;">👥 Kelola Coach</a>
+            <a href="#" onclick="showTab('ai');return false;">🤖 AI Generator</a>
+            <a href="#" onclick="showTab('settings');return false;">⚙️ Pengaturan</a>
+          </nav>
+        </aside>
+
+        <div class="admin-content">
+          <!-- Dashboard -->
+          <div id="tab-dashboard">
+            <div class="admin-card">
+              <h3>📊 Statistik Konten</h3>
+              <div class="stats-grid" id="admin-stats"></div>
+            </div>
+            <div class="admin-card">
+              <h3>⚡ Quick Actions</h3>
+              <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="showTab('drills')">+ Tambah Drill</button>
+                <button class="btn btn-primary" onclick="showTab('news')">+ Tambah Berita</button>
+                <button class="btn btn-outline" onclick="exportContent()">📥 Export JSON</button>
+                <button class="btn btn-outline" onclick="document.getElementById('import-file').click()">📤 Import JSON</button>
+                <input type="file" id="import-file" accept=".json" style="display:none;" onchange="handleImport(this)">
+              </div>
+            </div>
+          </div>
+
+          <!-- Drills Tab -->
+          <div id="tab-drills" style="display:none;">
+            <div class="admin-card">
+              <h3>🔥 Kelola Drills <span class="ai-status ready" id="drill-count">0 items</span></h3>
+              <div style="overflow-x:auto;">
+                <table class="data-table" id="drills-table">
+                  <thead><tr><th>Judul</th><th>Sport</th><th>Level</th><th>Tanggal</th><th>Views</th><th>Aksi</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="admin-card">
+              <h3>+ Tambah Drill Manual</h3>
+              <form id="add-drill-form" onsubmit="event.preventDefault();handleAddDrill();">
+                <div class="form-group">
+                  <label class="form-label">Judul</label>
+                  <input type="text" id="drill-title" class="form-input" required>
+                </div>
+                <div class="grid grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Sport</label>
+                    <select id="drill-sport" class="form-select">
+                      <option value="basket">Basket</option>
+                      <option value="futsal">Futsal</option>
+                      <option value="padel">Padel</option>
+                      <option value="voli">Voli</option>
+                      <option value="atletik">Atletik</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Difficulty</label>
+                    <select id="drill-difficulty" class="form-select">
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="advanced">Advanced</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Excerpt</label>
+                  <textarea id="drill-excerpt" class="form-textarea" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Steps (satu per baris)</label>
+                  <textarea id="drill-steps" class="form-textarea" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Drill</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- News Tab -->
+          <div id="tab-news" style="display:none;">
+            <div class="admin-card">
+              <h3>📰 Kelola Berita <span class="ai-status ready" id="news-count">0 items</span></h3>
+              <div style="overflow-x:auto;">
+                <table class="data-table" id="news-table">
+                  <thead><tr><th>Judul</th><th>Kategori</th><th>Tanggal</th><th>Views</th><th>Aksi</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="admin-card">
+              <h3>+ Tambah Berita Manual</h3>
+              <form id="add-news-form" onsubmit="event.preventDefault();handleAddNews();">
+                <div class="form-group">
+                  <label class="form-label">Judul</label>
+                  <input type="text" id="news-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Kategori</label>
+                  <select id="news-category" class="form-select">
+                    <option value="basket">Basket</option>
+                    <option value="futsal">Futsal</option>
+                    <option value="padel">Padel</option>
+                    <option value="voli">Voli</option>
+                    <option value="atletik">Atletik</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="gosip">Gosip</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Excerpt</label>
+                  <textarea id="news-excerpt" class="form-textarea" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Konten (HTML)</label>
+                  <textarea id="news-content" class="form-textarea" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Berita</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Coaches Tab -->
+          <div id="tab-coaches" style="display:none;">
+            <div class="admin-card">
+              <h3>👥 Kelola Coach</h3>
+              <p style="color:var(--text-secondary);">Kelola data coach melalui export/import JSON.</p>
+            </div>
+          </div>
+
+          <!-- AI Tab -->
+          <div id="tab-ai" style="display:none;">
+            <div class="admin-card">
+              <h3>🤖 AI Content Generator</h3>
+              <div class="form-group">
+                <label class="form-label">Google Gemini API Key</label>
+                <input type="password" id="gemini-key-input" class="form-input" placeholder="Masukkan API Key">
+                <p class="form-hint">API Key disimpan di browser (localStorage). Tidak dikirim ke server.</p>
+              </div>
+              <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="saveGeminiKeyFromInput()">💾 Simpan Key</button>
+                <button class="btn btn-secondary" onclick="testGeminiKey()">🧪 Test Key</button>
+              </div>
+              <div id="ai-status-area" style="margin-top:1rem;"></div>
+            </div>
+            <div class="admin-card">
+              <h3>✨ Generate Drill dengan AI</h3>
+              <div class="grid grid-3">
+                <div class="form-group">
+                  <label class="form-label">Sport</label>
+                  <select id="ai-sport" class="form-select">
+                    <option value="basket">Basket</option>
+                    <option value="futsal">Futsal</option>
+                    <option value="padel">Padel</option>
+                    <option value="voli">Voli</option>
+                    <option value="atletik">Atletik</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Difficulty</label>
+                  <select id="ai-difficulty" class="form-select">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Topik</label>
+                  <input type="text" id="ai-topic" class="form-input" placeholder="Contoh: Crossover Dribble">
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="generateDrillFromAdmin()">🚀 Generate Drill</button>
+            </div>
+            <div class="admin-card">
+              <h3>📝 Generate Berita dengan AI</h3>
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Kategori</label>
+                  <select id="ai-news-category" class="form-select">
+                    <option value="basket">Basket</option>
+                    <option value="futsal">Futsal</option>
+                    <option value="padel">Padel</option>
+                    <option value="voli">Voli</option>
+                    <option value="atletik">Atletik</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="gosip">Gosip</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Topik</label>
+                  <input type="text" id="ai-news-topic" class="form-input" placeholder="Contoh: Lakers draft pick">
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="generateNewsFromAdmin()">🚀 Generate Berita</button>
+            </div>
+          </div>
+
+          <!-- Settings Tab -->
+          <div id="tab-settings" style="display:none;">
+            <div class="admin-card">
+              <h3>⚙️ Pengaturan</h3>
+              <div class="form-group">
+                <label class="form-label">Ganti Password Admin</label>
+                <input type="password" id="old-pass" class="form-input" placeholder="Password lama">
+              </div>
+              <div class="form-group">
+                <input type="password" id="new-pass" class="form-input" placeholder="Password baru">
+              </div>
+              <button class="btn btn-primary" onclick="handleChangePass()">Ganti Password</button>
+            </div>
+            <div class="admin-card">
+              <h3>🔄 Reset Data</h3>
+              <p style="color:var(--text-secondary);margin-bottom:1rem;">Reset semua konten ke default. Aksi ini tidak bisa dibatalkan.</p>
+              <button class="btn btn-outline" onclick="handleReset()" style="color:var(--danger);border-color:var(--danger);">Reset ke Default</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/ai-content.js?v=2"></script>
+  <script src="js/admin.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
+  <script>
+    (function() {
+      // Check login
+      if (isAdminLoggedIn()) {
+        showPanel();
+      }
+
+      document.getElementById('login-form').addEventListener('submit', function() {
+        const pass = document.getElementById('admin-pass').value;
+        if (adminLogin(pass)) {
+          showPanel();
+        } else {
+          showToast('Password salah!', 'error');
+        }
+      });
+    })();
+
+    function showPanel() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      refreshStats();
+      renderAdminDrillsTable(document.querySelector('#drills-table tbody'));
+      renderAdminNewsTable(document.querySelector('#news-table tbody'));
+    }
+
+    function showTab(tab) {
+      document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+      document.querySelector(`.admin-nav a[onclick*="'${tab}'"]`).classList.add('active');
+      ['dashboard','drills','news','coaches','ai','settings'].forEach(t => {
+        document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+      });
+      if (tab === 'dashboard') refreshStats();
+      if (tab === 'drills') renderAdminDrillsTable(document.querySelector('#drills-table tbody'));
+      if (tab === 'news') renderAdminNewsTable(document.querySelector('#news-table tbody'));
+    }
+
+    function refreshStats() {
+      const stats = getAdminStats();
+      document.getElementById('drill-count').textContent = stats.drills + ' drills';
+      document.getElementById('news-count').textContent = stats.news + ' news';
+      document.getElementById('admin-stats').innerHTML = `
+        <div class="stat-card"><div class="stat-number">${stats.drills}</div><div class="stat-label">Total Drills</div></div>
+        <div class="stat-card"><div class="stat-number">${stats.news}</div><div class="stat-label">Total Berita</div></div>
+        <div class="stat-card"><div class="stat-number">${stats.coaches}</div><div class="stat-label">Total Coach</div></div>
+        <div class="stat-card"><div class="stat-number">${formatNumber(stats.totalViews)}</div><div class="stat-label">Total Views</div></div>
+      `;
+    }
+
+    function handleAddDrill() {
+      const drill = {
+        title: document.getElementById('drill-title').value,
+        sport: document.getElementById('drill-sport').value,
+        difficulty: document.getElementById('drill-difficulty').value,
+        duration: '15 menit',
+        equipment: 'Bola',
+        image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600',
+        excerpt: document.getElementById('drill-excerpt').value,
+        description: document.getElementById('drill-excerpt').value,
+        steps: document.getElementById('drill-steps').value.split('\n').filter(s => s.trim()),
+        tips: 'Latihan secara konsisten untuk hasil maksimal.'
+      };
+      addDrill(drill);
+      showToast('Drill ditambahkan!', 'success');
+      document.getElementById('add-drill-form').reset();
+      renderAdminDrillsTable(document.querySelector('#drills-table tbody'));
+    }
+
+    function handleAddNews() {
+      const item = {
+        title: document.getElementById('news-title').value,
+        category: document.getElementById('news-category').value,
+        excerpt: document.getElementById('news-excerpt').value,
+        image: 'https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=600',
+        readTime: '3 menit',
+        content: document.getElementById('news-content').value
+      };
+      addNews(item);
+      showToast('Berita ditambahkan!', 'success');
+      document.getElementById('add-news-form').reset();
+      renderAdminNewsTable(document.querySelector('#news-table tbody'));
+    }
+
+    function handleImport(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        if (importContent(e.target.result)) {
+          showToast('Import berhasil!', 'success');
+          refreshStats();
+        } else {
+          showToast('Import gagal. Format tidak valid.', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function saveGeminiKeyFromInput() {
+      const key = document.getElementById('gemini-key-input').value;
+      setGeminiKey(key);
+      showToast('API Key disimpan!', 'success');
+    }
+
+    async function generateDrillFromAdmin() {
+      const sport = document.getElementById('ai-sport').value;
+      const difficulty = document.getElementById('ai-difficulty').value;
+      const topic = document.getElementById('ai-topic').value || 'Latihan ' + sport;
+      const drill = await adminGenerateDrill(sport, topic, difficulty);
+      if (drill) renderAdminDrillsTable(document.querySelector('#drills-table tbody'));
+    }
+
+    async function generateNewsFromAdmin() {
+      const category = document.getElementById('ai-news-category').value;
+      const topic = document.getElementById('ai-news-topic').value || 'Berita ' + category;
+      const item = await adminGenerateNews(category, topic);
+      if (item) renderAdminNewsTable(document.querySelector('#news-table tbody'));
+    }
+
+    function handleChangePass() {
+      const oldPass = document.getElementById('old-pass').value;
+      const newPass = document.getElementById('new-pass').value;
+      if (changeAdminPass(oldPass, newPass)) {
+        showToast('Password berhasil diganti!', 'success');
+        document.getElementById('old-pass').value = '';
+        document.getElementById('new-pass').value = '';
+      } else {
+        showToast('Password lama salah!', 'error');
+      }
+    }
+
+    function handleReset() {
+      if (resetToDefault()) {
+        showToast('Data direset ke default!', 'success');
+        refreshStats();
+      }
+    }
+  </script>
+</body>
+</html>

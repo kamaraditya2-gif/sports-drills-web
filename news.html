@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berita Olahraga Terbaru - Daddy's Sports Hub</title>
+  <meta name="description" content="Berita olahraga terkini seputar basket, futsal, padel, voli, atletik, transfer, dan gosip olahraga. Update harian untuk atlet Indonesia.">
+  <link rel="canonical" href="https://www.daddys-sporthub.com/news.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏆</div>
+        <span>Daddy's Sports Hub</span>
+      </a>
+      <nav class="nav" role="navigation">
+        <a href="index.html">Beranda</a>
+        <a href="drills.html">Drills</a>
+        <a href="news.html" class="active">Berita</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="about.html">Tentang</a>
+        <a href="https://marketplace.daddys-sporthub.com" target="_blank" rel="noopener" style="background:var(--gradient-hero);color:#fff;padding:0.4rem 1rem;border-radius:9999px;font-size:0.8rem;">🛒 Marketplace</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" style="padding-top:8rem;">
+      <div class="container">
+        <div class="section-title">
+          <h1 class="text-gradient">Berita Olahraga</h1>
+          <p>Update terkini dari dunia olahraga nasional dan internasional</p>
+        </div>
+
+        <div class="filter-tabs" id="category-filters">
+          <button class="active" data-filter="all">Semua</button>
+          <button data-filter="basket">🏀 Basket</button>
+          <button data-filter="futsal">⚽ Futsal</button>
+          <button data-filter="padel">🎾 Padel</button>
+          <button data-filter="voli">🏐 Voli</button>
+          <button data-filter="atletik">🏃 Atletik</button>
+          <button data-filter="transfer">🔄 Transfer</button>
+          <button data-filter="gosip">💬 Gosip</button>
+        </div>
+
+        <div class="grid grid-3" id="news-grid"></div>
+
+        <!-- Ad Slot Rectangle -->
+        <div class="ad-slot ad-slot-rectangle" data-ad-slot style="background-image: url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600'); margin-top: 2rem;">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567901" data-ad-format="auto"></ins>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom:1rem;">
+            <div class="logo-icon">🏆</div>
+            <span>Daddy's Sports Hub</span>
+          </div>
+          <p>Portal latihan drill dan berita olahraga terlengkap untuk atlet Indonesia.</p>
+        </div>
+        <div>
+          <h4>Drills</h4>
+          <div class="footer-links">
+            <a href="drills.html?sport=basket">Basket</a>
+            <a href="drills.html?sport=futsal">Futsal</a>
+            <a href="drills.html?sport=padel">Padel</a>
+            <a href="drills.html?sport=voli">Voli</a>
+            <a href="drills.html?sport=atletik">Atletik</a>
+          </div>
+        </div>
+        <div>
+          <h4>Berita</h4>
+          <div class="footer-links">
+            <a href="news.html">Semua Berita</a>
+            <a href="news.html?category=transfer">Transfer</a>
+            <a href="news.html?category=gosip">Gosip</a>
+          </div>
+        </div>
+        <div>
+          <h4>Informasi</h4>
+          <div class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="contact.html">Kontak</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Kebijakan Privasi</a>
+            <a href="https://marketplace.daddys-sporthub.com" target="_blank" rel="noopener">🛒 Marketplace</a>
+            <a href="https://marketplace.daddys-sporthub.com/courts" target="_blank" rel="noopener">🏟️ Booking Lapangan</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span class="current-year">2026</span> Daddy's Sports Hub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(location.search);
+      const catFilter = params.get('category');
+      let currentFilter = catFilter || 'all';
+
+      const container = document.getElementById('news-grid');
+      const filterButtons = document.querySelectorAll('#category-filters button');
+
+      function render() {
+        let news = loadContent().news;
+        if (currentFilter !== 'all') {
+          news = news.filter(n => n.category === currentFilter);
+        }
+
+        if (news.length === 0) {
+          container.innerHTML = '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1;">Tidak ada berita yang ditemukan.</p>';
+          return;
+        }
+
+        container.innerHTML = news.map(n => `
+          <article class="card news-card" data-animate>
+            <div class="card-image">
+              <img src="${n.image}" alt="${n.title}" loading="lazy">
+              <span class="badge ${getSportBadgeClass(n.category)}">${n.category}</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="news-detail.html?id=${n.id}">${n.title}</a></h3>
+              <div class="card-meta">
+                <span>📅 ${formatDate(n.date)}</span>
+                <span>⏱ ${n.readTime}</span>
+                <span>👁 ${formatNumber(n.views)}</span>
+              </div>
+              <p class="card-excerpt">${n.excerpt}</p>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          render();
+        });
+      });
+
+      if (catFilter) {
+        filterButtons.forEach(b => {
+          if (b.dataset.filter === catFilter) {
+            b.classList.add('active');
+            document.querySelector('#category-filters button[data-filter="all"]').classList.remove('active');
+          }
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

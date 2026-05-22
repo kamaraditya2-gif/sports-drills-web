@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Drill - Daddy's Sports Hub</title>
+  <meta name="description" content="Detail latihan drill olahraga lengkap dengan langkah-langkah, tips, dan equipment yang dibutuhkan.">
+  <link rel="canonical" href="https://www.daddys-sporthub.com/drill-detail.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏆</div>
+        <span>Daddy's Sports Hub</span>
+      </a>
+      <nav class="nav" role="navigation">
+        <a href="index.html">Beranda</a>
+        <a href="drills.html">Drills</a>
+        <a href="news.html">Berita</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="about.html">Tentang</a>
+        <a href="https://marketplace.daddys-sporthub.com" target="_blank" rel="noopener" style="background:var(--gradient-hero);color:#fff;padding:0.4rem 1rem;border-radius:9999px;font-size:0.8rem;">🛒 Marketplace</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="drill-detail">
+    <div class="container">
+      <div id="drill-content"></div>
+
+      <!-- Ad Slot Banner -->
+      <div class="ad-slot ad-slot-banner" data-ad-slot style="background-image: url('https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=1200');">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567898" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+
+      </div>
+
+      <div style="margin-top:3rem;">
+        <h3 style="margin-bottom:1.5rem;">Drill Lainnya</h3>
+        <div class="grid grid-3" id="related-drills"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom:1rem;">
+            <div class="logo-icon">🏆</div>
+            <span>Daddy's Sports Hub</span>
+          </div>
+          <p>Portal latihan drill dan berita olahraga terlengkap untuk atlet Indonesia.</p>
+        </div>
+        <div>
+          <h4>Drills</h4>
+          <div class="footer-links">
+            <a href="drills.html?sport=basket">Basket</a>
+            <a href="drills.html?sport=futsal">Futsal</a>
+            <a href="drills.html?sport=padel">Padel</a>
+            <a href="drills.html?sport=voli">Voli</a>
+            <a href="drills.html?sport=atletik">Atletik</a>
+          </div>
+        </div>
+        <div>
+          <h4>Berita</h4>
+          <div class="footer-links">
+            <a href="news.html">Semua Berita</a>
+            <a href="news.html?category=transfer">Transfer</a>
+            <a href="news.html?category=gosip">Gosip</a>
+          </div>
+        </div>
+        <div>
+          <h4>Informasi</h4>
+          <div class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="contact.html">Kontak</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Kebijakan Privasi</a>
+            <a href="https://marketplace.daddys-sporthub.com" target="_blank" rel="noopener">🛒 Marketplace</a>
+            <a href="https://marketplace.daddys-sporthub.com/courts" target="_blank" rel="noopener">🏟️ Booking Lapangan</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span class="current-year">2026</span> Daddy's Sports Hub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(location.search);
+      const drillId = params.get('id');
+      const content = loadContent();
+      const drill = content.drills.find(d => d.id === drillId);
+
+      const container = document.getElementById('drill-content');
+      if (!drill) {
+        container.innerHTML = '<div class="drill-header"><h1>Drill tidak ditemukan</h1><p><a href="drills.html">← Kembali ke daftar drill</a></p></div>';
+        return;
+      }
+
+      // Update meta
+      document.title = drill.title + ' - Daddy\'s Sports Hub';
+      document.querySelector('meta[name="description"]').content = drill.excerpt;
+
+      container.innerHTML = `
+        <div class="drill-header">
+          <div style="display:flex;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+            <span class="badge ${getSportBadgeClass(drill.sport)}">${sportNames[drill.sport] || drill.sport}</span>
+            <span class="badge ${getDifficultyBadgeClass(drill.difficulty)}">${drill.difficulty}</span>
+            <span class="daily-indicator">📅 ${formatDate(drill.date)}</span>
+          </div>
+          <h1 style="margin-bottom:1rem;">${drill.title}</h1>
+          <p style="color:var(--text-secondary);font-size:1.1rem;">${drill.excerpt}</p>
+          <div class="drill-info" style="margin-top:1.5rem;">
+            <span>⏱ ${drill.duration}</span>
+            <span>🎯 ${drill.equipment}</span>
+            <span>👁 ${formatNumber(drill.views)} views</span>
+          </div>
+        </div>
+
+        <div class="content-with-sidebar">
+          <div>
+            <img src="${drill.image}" alt="${drill.title}" style="width:100%;border-radius:var(--radius-lg);margin-bottom:2rem;">
+
+            <div class="article-content">
+              <h2>Deskripsi</h2>
+              <p>${drill.description}</p>
+
+              <h2>Langkah-Langkah</h2>
+            </div>
+
+            <div class="drill-steps">
+              ${drill.steps.map(step => `<div class="drill-step"><p>${step}</p></div>`).join('')}
+            </div>
+
+            <div class="article-content" style="margin-top:2rem;">
+              <h2>💡 Tips dari Coach</h2>
+              <blockquote>${drill.tips}</blockquote>
+            </div>
+
+            <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="shareContent('${drill.title.replace(/'/g, "\\'")}', '${drill.excerpt.replace(/'/g, "\\'")}')">🔗 Share</button>
+              <a href="drills.html?sport=${drill.sport}" class="btn btn-outline">← Lihat Drill ${sportNames[drill.sport] || drill.sport} Lainnya</a>
+            </div>
+          </div>
+
+          <aside class="sidebar">
+            <div class="sidebar-widget">
+              <h4>📊 Info Drill</h4>
+              <div class="sidebar-list">
+                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius);">
+                  <p style="color:var(--text-muted);font-size:0.8rem;">Sport</p>
+                  <p style="font-weight:700;">${sportNames[drill.sport] || drill.sport}</p>
+                </div>
+                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius);">
+                  <p style="color:var(--text-muted);font-size:0.8rem;">Difficulty</p>
+                  <p style="font-weight:700;">${drill.difficulty}</p>
+                </div>
+                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius);">
+                  <p style="color:var(--text-muted);font-size:0.8rem;">Durasi</p>
+                  <p style="font-weight:700;">${drill.duration}</p>
+                </div>
+                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius);">
+                  <p style="color:var(--text-muted);font-size:0.8rem;">Equipment</p>
+                  <p style="font-weight:700;">${drill.equipment}</p>
+                </div>
+              </div>
+            </div>
+            </div>
+          </aside>
+        </div>
+      `;
+
+      // Related drills
+      const related = content.drills.filter(d => d.sport === drill.sport && d.id !== drill.id).slice(0, 3);
+      document.getElementById('related-drills').innerHTML = related.map(d => `
+        <article class="card drill-card">
+          <div class="card-image">
+            <img src="${d.image}" alt="${d.title}" loading="lazy">
+            <span class="badge ${getDifficultyBadgeClass(d.difficulty)} difficulty-badge">${d.difficulty}</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title"><a href="drill-detail.html?id=${d.id}">${d.title}</a></h3>
+            <div class="card-meta">
+              <span>⏱ ${d.duration}</span>
+            </div>
+            <p class="card-excerpt">${d.excerpt}</p>
+          </div>
+        </article>
+      `).join('');
+    })();
+  </script>
+</body>
+</html>
