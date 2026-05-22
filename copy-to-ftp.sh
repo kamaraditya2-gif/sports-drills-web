@@ -9,3 +9,4 @@ REMOTE_DIR="public_html/"
 # Ensure you have SSH access set up
 rsync -avz --delete --exclude '.git' --exclude '.gitignore' ./ "${USER}@${SERVER}:${REMOTE_DIR}"
 echo "Done."
+echo "NOTE: Files have been copied to ${REMOTE_DIR}. Verify by visiting the site."
