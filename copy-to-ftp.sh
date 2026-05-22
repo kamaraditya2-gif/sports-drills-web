@@ -2,6 +2,12 @@
 # Copy current directory to remote server's public_html via rsync + sshpass
 # Install sshpass if not available: sudo apt install sshpass (Debian/Ubuntu)
 
+# If not already running as root, re‑run with sudo
+if [ "$EUID" -ne 0 ]; then
+    echo "Script perlu dijalankan sebagai root. Melanjutkan dengan sudo..."
+    exec sudo "$0" "$@"
+fi
+
 set -x
 
 USER="daddyssp"
