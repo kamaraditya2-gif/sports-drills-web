@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gandooz Solution — Network & Technology Solutions</title>
+  <meta name="description" content="Gandooz Solution provides networking, AI, surveillance, and data center solutions. Router, switch, server rentals available.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00D4FF;
+      --primary-dark: #0099CC;
+      --secondary: #7B61FF;
+      --dark: #050508;
+      --darker: #020204;
+      --text: #E0E6FF;
+      --text-muted: #8899AA;
+      --border: #1A1F3C;
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--darker);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* STAR WARS SPACE BACKGROUND */
+    .space-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(ellipse at bottom, #0B0D17 0%, #020204 100%);
+      z-index: -3;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      animation: twinkle 5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+
+    /* LASER EFFECTS */
+    .laser {
+      position: fixed;
+      z-index: -1;
+      height: 2px;
+      border-radius: 2px;
+      opacity: 0.6;
+      filter: blur(1px);
+      animation: laserShoot linear infinite;
+    }
+    .laser-1 {
+      top: 20%; left: -100px; width: 300px;
+      background: linear-gradient(90deg, transparent, #00D4FF, transparent);
+      animation-duration: 4s;
+      animation-delay: 0s;
+    }
+    .laser-2 {
+      top: 45%; right: -100px; width: 250px;
+      background: linear-gradient(90deg, transparent, #FF0040, transparent);
+      animation-duration: 5s;
+      animation-delay: 1s;
+      transform: rotate(-5deg);
+    }
+    .laser-3 {
+      top: 70%; left: -100px; width: 400px;
+      background: linear-gradient(90deg, transparent, #7B61FF, transparent);
+      animation-duration: 6s;
+      animation-delay: 2s;
+      transform: rotate(3deg);
+    }
+    .laser-4 {
+      top: 35%; right: -100px; width: 200px;
+      background: linear-gradient(90deg, transparent, #00FF88, transparent);
+      animation-duration: 3.5s;
+      animation-delay: 0.5s;
+      transform: rotate(-8deg);
+    }
+    .laser-5 {
+      top: 55%; left: -100px; width: 350px;
+      background: linear-gradient(90deg, transparent, #FFD700, transparent);
+      animation-duration: 7s;
+      animation-delay: 3s;
+      transform: rotate(5deg);
+    }
+    @keyframes laserShoot {
+      0% { transform: translateX(0) scaleX(0.5); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.6; }
+      100% { transform: translateX(calc(100vw + 200px)) scaleX(1.5); opacity: 0; }
+    }
+    .laser-right {
+      animation-name: laserShootRight !important;
+    }
+    @keyframes laserShootRight {
+      0% { transform: translateX(0) scaleX(0.5); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.6; }
+      100% { transform: translateX(calc(-100vw - 200px)) scaleX(1.5); opacity: 0; }
+    }
+
+    /* HYPERSPEED LINES */
+    .hyperspeed {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.15;
+    }
+    .hyperspeed-line {
+      position: absolute;
+      background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+      width: 1px;
+      animation: hyperspeedDrop linear infinite;
+    }
+    @keyframes hyperspeedDrop {
+      0% { transform: translateY(-100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(5,5,8,0.9);
+      backdrop-filter: blur(8px);
+      padding: 0.4rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+    .lang-switch button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lang-switch button.active {
+      background: var(--primary);
+      color: var(--dark);
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 0 2rem;
+      position: relative;
+    }
+
+    /* LOGO: Blue embossed G with crescent moon */
+    .hero-logo {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-logo .crescent {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      box-shadow: inset -12px 0 0 0 var(--primary), 0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(0,212,255,0.2);
+      animation: moonPulse 3s ease-in-out infinite;
+    }
+    .hero-logo .g-letter {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00D4FF;
+      text-shadow:
+        1px 1px 0 #0066AA,
+        -1px -1px 0 #88EEFF,
+        0 0 20px rgba(0,212,255,0.8),
+        0 0 40px rgba(0,212,255,0.4);
+      z-index: 2;
+    }
+    @keyframes moonPulse {
+      0%, 100% { box-shadow: inset -12px 0 0 0 var(--primary), 0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(0,212,255,0.2); }
+      50% { box-shadow: inset -12px 0 0 0 var(--primary), 0 0 50px rgba(0,212,255,0.6), 0 0 90px rgba(0,212,255,0.3); }
+    }
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0,212,255,0.3);
+    }
+    .hero .solution-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 15px rgba(0,212,255,0.5);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 2rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.05em;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--dark);
+      box-shadow: 0 0 20px rgba(0,212,255,0.3);
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0,212,255,0.5);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: 0 0 15px rgba(0,212,255,0.2);
+    }
+    .section {
+      padding: 3rem 0;
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+    .section-title h2 span { color: var(--primary); text-shadow: 0 0 15px rgba(0,212,255,0.4); }
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* PARTNER LOGOS BAR */
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(10, 12, 28, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(10px);
+    }
+    .partner-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .partner-logo:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .logo-vertex   { background: linear-gradient(135deg, #4285F4 0%, #34A853 100%); color: #fff; }
+    .logo-moonshot { background: #1A1A2E; color: #00D4FF; border-color: #00D4FF; }
+    .logo-cursor   { background: #6C5CE7; color: #fff; }
+    .logo-mikrotik { background: #E53E3E; color: #fff; }
+    .logo-openstack{ background: #ED1944; color: #fff; }
+    .logo-k8s      { background: #326CE5; color: #fff; }
+    .logo-docker   { background: #2496ED; color: #fff; }
+    .logo-ansible  { background: #EE0000; color: #fff; }
+    .logo-ubuntu   { background: #E95420; color: #fff; }
+    .logo-cachy    { background: linear-gradient(135deg, #00BFFF 0%, #00FF88 100%); color: #000; }
+
+    /* TECH STACK GRID */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .tech-category {
+      background: rgba(10, 12, 28, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .tech-category:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,212,255,0.1);
+    }
+    .tech-category h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tech-category h3::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,212,255,0.6);
+    }
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tech-tag {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .tech-tag:hover {
+      background: rgba(0,212,255,0.2);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: rgba(10, 12, 28, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .service-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(0,212,255,0.15);
+    }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0,212,255,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border: 1px solid rgba(0,212,255,0.2);
+    }
+    .service-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .rental-section {
+      background: rgba(10, 12, 28, 0.6);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .rental-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .rental-item {
+      background: rgba(5, 5, 8, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .rental-item:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(0,212,255,0.1);
+    }
+    .rental-item .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .rental-item h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .rental-item p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .expertise-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .expertise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: rgba(10, 12, 28, 0.8);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .expertise-item:hover {
+      border-color: var(--primary);
+    }
+    .expertise-item .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+      box-shadow: 0 0 10px rgba(0,212,255,0.5);
+    }
+    .expertise-item span {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .contact-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(0,212,255,0.05) 100%);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--dark);
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 0 25px rgba(0,212,255,0.3);
+    }
+    .contact-email:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0,212,255,0.5);
+    }
+    .footer {
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: rgba(2,2,4,0.8);
+    }
+    .footer a { color: var(--primary); text-decoration: none; }
+    [data-lang] { display: none; }
+    [data-lang].active { display: block; }
+
+    .text-block {
+      background: rgba(10, 12, 28, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .text-block p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .text-block p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 5rem 0 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .rental-grid { grid-template-columns: repeat(2, 1fr); }
+      .partner-logos { gap: 0.6rem; }
+      .partner-logo { font-size: 0.75rem; padding: 0.5rem 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Space Background -->
+  <div class="space-bg"></div>
+  <div class="stars"></div>
+  <div class="hyperspeed" id="hyperspeed"></div>
+
+  <!-- Lasers -->
+  <div class="laser laser-1"></div>
+  <div class="laser laser-2 laser-right"></div>
+  <div class="laser laser-3"></div>
+  <div class="laser laser-4 laser-right"></div>
+  <div class="laser laser-5"></div>
+
+  <!-- Language Switcher -->
+  <div class="lang-switch">
+    <button class="active" onclick="setLang('en')">EN</button>
+    <button onclick="setLang('id')">ID</button>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-logo">
+        <div class="crescent"></div>
+        <div class="g-letter">G</div>
+      </div>
+      <h1>PT. Gandooz Solusi Aplikasi</h1>
+      <div class="solution-text">Solution</div>
+      <p data-lang="en" class="active">Your trusted partner for Networking, AI, Surveillance, and Data Center solutions. We build the future, one connection at a time. From small offices to massive enterprise campuses, we got your back with tech that actually works and people who actually care. No fancy jargon, just solid results.</p>
+      <p data-lang="id">Mitra terpercaya Anda untuk solusi Jaringan, AI, Surveilans, dan Data Center. Kami membangun masa depan, satu koneksi pada satu waktu. Dari kantor kecil hingga kampus enterprise besar, kami siap membantu dengan teknologi yang benar-benar bekerja dan orang-orang yang benar-benar peduli. Tanpa jargon aneh, hanya hasil nyata.</p>
+      <div class="hero-cta">
+        <a href="#services" class="btn btn-primary" data-lang="en">Our Services</a>
+        <a href="#services" class="btn btn-primary" data-lang="id">Layanan Kami</a>
+        <a href="#contact" class="btn btn-secondary" data-lang="en">Contact Sales</a>
+        <a href="#contact" class="btn btn-secondary" data-lang="id">Hubungi Sales</a>
+      </div>
+
+      <!-- Partner Logos -->
+      <div class="partner-logos">
+        <div class="partner-logo logo-vertex">Vertex AI</div>
+        <div class="partner-logo logo-moonshot">Moonshot</div>
+        <div class="partner-logo logo-cursor">Cursor</div>
+        <div class="partner-logo logo-mikrotik">MikroTik</div>
+        <div class="partner-logo logo-openstack">OpenStack</div>
+        <div class="partner-logo logo-k8s">Kubernetes</div>
+        <div class="partner-logo logo-docker">Docker</div>
+        <div class="partner-logo logo-ansible">Ansible</div>
+        <div class="partner-logo logo-ubuntu">Ubuntu</div>
+        <div class="partner-logo logo-cachy">Cachy OS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Header -->
+  <section class="section" id="tech-stack">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en"><span>Technology</span> Stack</h2>
+        <h2 data-lang="id"><span>Stack</span> Teknologi</h2>
+        <p data-lang="en">Tools, platforms, and frameworks we use and support every day</p>
+        <p data-lang="id">Tool, platform, dan framework yang kami gunakan dan dukung setiap hari</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-category">
+          <h3>AI / Machine Learning / LLM</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Keras</span>
+            <span class="tech-tag">Hugging Face Transformers</span>
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">Haystack</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">ONNX</span>
+            <span class="tech-tag">Jupyter</span>
+            <span class="tech-tag">MLflow</span>
+            <span class="tech-tag">Kubeflow</span>
+            <span class="tech-tag">vLLM</span>
+            <span class="tech-tag">Ollama</span>
+            <span class="tech-tag">Open WebUI</span>
+            <span class="tech-tag">Llama.cpp</span>
+            <span class="tech-tag">Apache Spark MLlib</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>Container & Cloud Native</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">Podman</span>
+            <span class="tech-tag">containerd</span>
+            <span class="tech-tag">CRI-O</span>
+            <span class="tech-tag">Helm</span>
+            <span class="tech-tag">Istio</span>
+            <span class="tech-tag">Envoy Proxy</span>
+            <span class="tech-tag">Traefik</span>
+            <span class="tech-tag">Linkerd</span>
+            <span class="tech-tag">Harbor</span>
+            <span class="tech-tag">Argo CD</span>
+            <span class="tech-tag">FluxCD</span>
+            <span class="tech-tag">OpenShift OKD</span>
+            <span class="tech-tag">Rancher</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>Virtualisasi & Hypervisor</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">KVM</span>
+            <span class="tech-tag">QEMU</span>
+            <span class="tech-tag">Xen Project</span>
+            <span class="tech-tag">Proxmox VE</span>
+            <span class="tech-tag">oVirt</span>
+            <span class="tech-tag">OpenStack</span>
+            <span class="tech-tag">libvirt</span>
+            <span class="tech-tag">VirtualBox</span>
+            <span class="tech-tag">LXC Linux Containers</span>
+            <span class="tech-tag">Incus</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>Telekomunikasi / Networking / SDN / 5G</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Open5GS</span>
+            <span class="tech-tag">free5GC</span>
+            <span class="tech-tag">OpenAirInterface</span>
+            <span class="tech-tag">Asterisk</span>
+            <span class="tech-tag">FreeSWITCH</span>
+            <span class="tech-tag">Kamailio</span>
+            <span class="tech-tag">OpenSIPS</span>
+            <span class="tech-tag">Open vSwitch</span>
+            <span class="tech-tag">FRRouting</span>
+            <span class="tech-tag">ONOS</span>
+            <span class="tech-tag">OpenDaylight</span>
+            <span class="tech-tag">Wireshark</span>
+            <span class="tech-tag">Netdata</span>
+            <span class="tech-tag">Prometheus</span>
+            <span class="tech-tag">Grafana</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>DevOps / Automation / IaC</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Ansible</span>
+            <span class="tech-tag">Terraform / OpenTofu</span>
+            <span class="tech-tag">Jenkins</span>
+            <span class="tech-tag">GitLab CE</span>
+            <span class="tech-tag">Tekton</span>
+            <span class="tech-tag">Apache Airflow</span>
+            <span class="tech-tag">Salt Project</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>Storage & Distributed Systems</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Ceph</span>
+            <span class="tech-tag">MinIO</span>
+            <span class="tech-tag">GlusterFS</span>
+            <span class="tech-tag">Longhorn</span>
+            <span class="tech-tag">etcd</span>
+            <span class="tech-tag">Apache Kafka</span>
+            <span class="tech-tag">RabbitMQ</span>
+          </div>
+        </div>
+        <div class="tech-category">
+          <h3>Security & Observability</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Falco</span>
+            <span class="tech-tag">Wazuh</span>
+            <span class="tech-tag">Suricata</span>
+            <span class="tech-tag">Zeek</span>
+            <span class="tech-tag">OpenTelemetry</span>
+            <span class="tech-tag">Jaeger</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Intro Text Block -->
+  <section class="section">
+    <div class="container">
+      <div class="text-block">
+        <p data-lang="en" class="active">Hey there! So you are looking for a tech partner that does not sleep on the job? Welcome to Gandooz. We have been around the block a few times — setting up networks that do not crash when everyone jumps on Zoom, installing CCTV systems that actually catch the bad guys, and building AI tools that make your data work for you instead of the other way around. We are not some giant corporation where you are just a ticket number. We are a team of geeks, engineers, and problem-solvers who love what we do.</p>
+        <p data-lang="id">Halo! Jadi Anda mencari mitra teknologi yang tidak tidur di pekerjaannya? Selamat datang di Gandooz. Kami sudah berkelana cukup lama — memasang jaringan yang tidak crash saat semua orang masuk Zoom, memasang sistem CCTV yang benar-benar menangkap orang jahat, dan membangun alat AI yang membuat data Anda bekerja untuk Anda, bukan sebaliknya. Kami bukan perusahaan raksasa di mana Anda hanya nomor tiket. Kami adalah tim geek, engineer, dan pemecah masalah yang mencintai apa yang kami lakukan.</p>
+        <p data-lang="en" class="active">Our story started back in 2018 when a bunch of network engineers got tired of seeing businesses waste money on overpriced, underperforming IT setups. We decided to do something about it. Fast forward to today, and we have handled everything from a single router install for a cozy coffee shop to full-blown data center architecture for multinational companies. Every project gets the same treatment: thorough planning, honest pricing, and support that does not ghost you after go-live.</p>
+        <p data-lang="id">Kisah kami dimulai pada 2018 ketika sekelompok engineer jaringan mulai bosan melihat bisnis membuang uang untuk setup IT yang terlalu mahal dan kurang performa. Kami memutuskan untuk melakukan sesuatu. Maju cepat ke hari ini, dan kami telah menangani segalanya mulai dari instalasi router tunggal untuk kedai kopi yang nyaman hingga arsitektur data center penuh untuk perusahaan multinasional. Setiap proyek mendapat perlakuan yang sama: perencanaan menyeluruh, harga jujur, dan dukungan yang tidak menghilang setelah go-live.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en"><span>Core</span> Services</h2>
+        <h2 data-lang="id"><span>Layanan</span> Utama</h2>
+        <p data-lang="en">End-to-end technology solutions for modern businesses — we handle the messy stuff so you do not have to</p>
+        <p data-lang="id">Solusi teknologi end-to-end untuk bisnis modern — kami tangani hal-hal rumit sehingga Anda tidak perlu</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3 data-lang="en">Network & Telecommunication</h3>
+          <h3 data-lang="id">Jaringan & Telekomunikasi</h3>
+          <p data-lang="en">Design, implementation, and maintenance of enterprise-grade network infrastructure. We do wired, wireless, fiber, you name it. Our networks are built to handle heavy traffic without breaking a sweat. We use gear from Cisco, Ubiquiti, MikroTik, and other top brands — or we can work with your preferred vendor. From site survey to final config, we keep you in the loop.</p>
+          <p data-lang="id">Desain, implementasi, dan pemeliharaan infrastruktur jaringan kelas enterprise. Kami kerjakan kabel, nirkabel, fiber, apa pun yang Anda butuhkan. Jaringan kami dibangun untuk menangani traffic berat tanpa keringat. Kami menggunakan peralatan dari Cisco, Ubiquiti, MikroTik, dan brand top lainnya — atau kami bisa bekerja dengan vendor pilihan Anda. Dari site survey hingga konfigurasi final, kami selalu mengabari Anda.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📹</div>
+          <h3 data-lang="en">Surveillance & Security</h3>
+          <h3 data-lang="id">Surveilans & Keamanan</h3>
+          <p data-lang="en">CCTV, access control, and integrated security systems architecting. We install cameras that see in the dark, door systems that know who should enter, and alarm setups that actually alert the right people. Whether you need 2 cameras for a small store or 200 for a warehouse complex, we scale to fit. Remote viewing via mobile app? Of course.</p>
+          <p data-lang="id">CCTV, access control, dan arsitektur sistem keamanan terintegrasi. Kami memasang kamera yang bisa melihat di kegelapan, sistem pintu yang tahu siapa yang boleh masuk, dan setup alarm yang benar-benar memberi tahu orang yang tepat. Apakah Anda butuh 2 kamera untuk toko kecil atau 200 untuk kompleks gudang, kami bisa menyesuaikan. Remote viewing via aplikasi mobile? Tentu saja.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤖</div>
+          <h3 data-lang="en">Artificial Intelligence</h3>
+          <h3 data-lang="id">Kecerdasan Buatan</h3>
+          <p data-lang="en">AI-powered analytics, automation, and machine learning solutions. We help businesses make sense of their data using smart algorithms that learn and improve over time. From chatbots that handle customer service 24/7 to predictive maintenance systems that know a server is about to fail before it actually does — we bring sci-fi tech to your everyday operations.</p>
+          <p data-lang="id">Solusi analitik berbasis AI, otomatisasi, dan machine learning. Kami membantu bisnis memahami data mereka menggunakan algoritma cerdas yang belajar dan membaik seiring waktu. Dari chatbot yang menangani layanan pelanggan 24/7 hingga sistem prediktif maintenance yang tahu server akan gagal sebelum benar-benar terjadi — kami bawa teknologi sci-fi ke operasional sehari-hari Anda.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3 data-lang="en">Application Development</h3>
+          <h3 data-lang="id">Pengembangan Aplikasi</h3>
+          <p data-lang="en">Custom web, mobile, and enterprise applications tailored to your needs. We build apps that do not look like they came from 2005. Our stack includes modern frameworks like React, Node.js, Python, and cloud-native architectures. Need an internal dashboard? A customer-facing portal? A mobile app for your field team? We have got you covered from wireframe to App Store.</p>
+          <p data-lang="id">Aplikasi web, mobile, dan enterprise custom sesuai kebutuhan Anda. Kami membangun aplikasi yang tidak terlihat seperti berasal dari tahun 2005. Stack kami mencakup framework modern seperti React, Node.js, Python, dan arsitektur cloud-native. Butuh dashboard internal? Portal untuk pelanggan? Aplikasi mobile untuk tim lapangan? Kami urus dari wireframe hingga App Store.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🖥️</div>
+          <h3 data-lang="en">Hardware Solutions</h3>
+          <h3 data-lang="id">Solusi Hardware</h3>
+          <p data-lang="en">Server procurement, workstation setup, and hardware infrastructure consulting. We know hardware can be confusing — specs, brands, warranties, it is a lot. That is why we act as your tech shopper, finding the right equipment at the right price. We handle rack mounting, cable management, and thermal planning so your server room does not turn into an oven.</p>
+          <p data-lang="id">Pengadaan server, setup workstation, dan konsultasi infrastruktur hardware. Kami tahu hardware bisa membingungkan — spesifikasi, brand, garansi, itu banyak. Karena itulah kami bertindak sebagai personal shopper teknologi Anda, menemukan peralatan yang tepat dengan harga yang tepat. Kami tangani rack mounting, manajemen kabel, dan perencanaan thermal sehingga ruang server Anda tidak berubah menjadi oven.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3 data-lang="en">Data Center</h3>
+          <h3 data-lang="id">Data Center</h3>
+          <p data-lang="en">Data center design, colocation, and cloud infrastructure management. We design facilities that keep your data safe, cool, and always available. Our team handles everything from power redundancy (UPS, generators) to cooling optimization and fire suppression. We also manage hybrid cloud setups, combining on-premise resources with AWS, Azure, or Google Cloud for maximum flexibility.</p>
+          <p data-lang="id">Desain data center, colocation, dan manajemen infrastruktur cloud. Kami mendesain fasilitas yang menjaga data Anda aman, dingin, dan selalu tersedia. Tim kami menangani segalanya dari redundansi daya (UPS, generator) hingga optimasi pendingin dan pemadam kebakaran. Kami juga mengelola setup hybrid cloud, menggabungkan resource on-premise dengan AWS, Azure, atau Google Cloud untuk fleksibilitas maksimal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More text content -->
+  <section class="section">
+    <div class="container">
+      <div class="text-block">
+        <p data-lang="en" class="active">Why do so many companies stick with us for years? Simple: we answer the phone. When your network goes down at 2 AM on a Sunday, you are not talking to a robot or waiting for a callback on Monday. You get a real human who knows your setup and can actually help. That is the Gandooz difference. We treat your business like it is our own because, honestly, your success is what keeps us in business too.</p>
+        <p data-lang="id">Mengapa begitu banyak perusahaan bertahan dengan kami selama bertahun-tahun? Sederhana: kami angkat telepon. Ketika jaringan Anda down jam 2 pagi di hari Minggu, Anda tidak berbicara dengan robot atau menunggu callback sampai Senin. Anda mendapatkan manusia nyata yang tahu setup Anda dan benar-benar bisa membantu. Itulah perbedaan Gandooz. Kami perlakukan bisnis Anda seperti milik kami sendiri karena, jujur saja, kesuksesan Anda juga yang membuat kami tetap berbisnis.</p>
+        <p data-lang="en" class="active">We also believe in transparency. No hidden fees, no surprise invoices, no "oh by the way this costs extra" moments. Before we start any project, you get a detailed breakdown of what we are doing, why we are doing it, and exactly how much it will cost. If something changes mid-project, we discuss it with you first. Trust is everything in this business, and we work hard to earn it every single day.</p>
+        <p data-lang="id">Kami juga percaya pada transparansi. Tidak ada biaya tersembunyi, tidak ada invoice mengejutkan, tidak ada momen "oh ya ini ada biaya tambahan". Sebelum kami memulai proyek apa pun, Anda mendapatkan rincian detail tentang apa yang kami lakukan, mengapa kami melakukannya, dan berapa biaya tepatnya. Jika ada perubahan di tengah proyek, kami diskusikan dengan Anda terlebih dahulu. Kepercayaan adalah segalanya dalam bisnis ini, dan kami bekerja keras untuk mendapatkannya setiap hari.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rental -->
+  <section class="section rental-section" id="rental">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en"><span>Hardware</span> Rental</h2>
+        <h2 data-lang="id"><span>Penyewaan</span> Hardware</h2>
+        <p data-lang="en">Enterprise equipment rental for short-term projects and events. Need it for a day? A month? A year? We are flexible.</p>
+        <p data-lang="id">Penyewaan peralatan enterprise untuk proyek dan event jangka pendek. Butuh untuk sehari? Sebulan? Setahun? Kami fleksibel.</p>
+      </div>
+      <div class="rental-grid">
+        <div class="rental-item">
+          <div class="icon">📡</div>
+          <h4>Router</h4>
+          <p data-lang="en">Enterprise-grade routing with dedicated support. Perfect for pop-up events, temporary offices, or disaster recovery.</p>
+          <p data-lang="id">Routing kelas enterprise dengan dukungan dedicated. Sempurna untuk event pop-up, kantor sementara, atau disaster recovery.</p>
+        </div>
+        <div class="rental-item">
+          <div class="icon">🔌</div>
+          <h4>Switch</h4>
+          <p data-lang="en">Managed & unmanaged switches in various port counts. We deliver, install, and pick up when you are done.</p>
+          <p data-lang="id">Switch managed & unmanaged dengan berbagai jumlah port. Kami antar, pasang, dan ambil ketika Anda selesai.</p>
+        </div>
+        <div class="rental-item">
+          <div class="icon">🖥️</div>
+          <h4>Server</h4>
+          <p data-lang="en">Rack & tower servers ready to deploy. Pre-configured with your OS of choice or bare metal if you prefer.</p>
+          <p data-lang="id">Server rack & tower siap deploy. Pre-configured dengan OS pilihan Anda atau bare metal jika Anda suka.</p>
+        </div>
+        <div class="rental-item">
+          <div class="icon">🏢</div>
+          <h4>Data Center</h4>
+          <p data-lang="en">Rack space & power in our partner facilities. Includes bandwidth, backup power, and 24/7 physical security.</p>
+          <p data-lang="id">Rack space & daya di fasilitas mitra kami. Termasuk bandwidth, backup daya, dan keamanan fisik 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en"><span>Our</span> Expertise</h2>
+        <h2 data-lang="id"><span>Keahlian</span> Kami</h2>
+        <p data-lang="en">Certified experts across multiple technology domains. We do not just talk the talk — we have the certs to back it up.</p>
+        <p data-lang="id">Pakar bersertifikasi di berbagai bidang teknologi. Kami tidak hanya bicara — kami punya sertifikat untuk membuktikannya.</p>
+      </div>
+      <div class="expertise-list">
+        <div class="expertise-item"><div class="dot"></div><span>Network Engineering (CCNA/CCNP)</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>AI / Machine Learning</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Full-Stack Application Development</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Server & Hardware Infrastructure</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Surveillance & Security Systems</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Data Center Architecture</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Cloud Infrastructure (AWS/Azure)</span></div>
+        <div class="expertise-item"><div class="dot"></div><span>Technical Support 24/7</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More content block -->
+  <section class="section">
+    <div class="container">
+      <div class="text-block">
+        <p data-lang="en" class="active">Let us be real for a second — technology is supposed to make your life easier, not harder. But too often, businesses end up with systems that are overcomplicated, overpriced, and underwhelming. That is where we come in. We strip away the nonsense and give you solutions that just work. Our clients range from startups with five people to enterprises with five thousand. The common thread? They all want technology that supports their goals instead of creating new headaches.</p>
+        <p data-lang="id">Mari jujur sejenak — teknologi seharusnya membuat hidup Anda lebih mudah, bukan lebih sulit. Namun terlalu sering, bisnis berakhir dengan sistem yang terlalu rumit, terlalu mahal, dan mengecewakan. Di situlah kami masuk. Kami buang omong kosong dan berikan solusi yang benar-benar bekerja. Klien kami berkisar dari startup dengan lima orang hingga enterprise dengan lima ribu. Benang merahnya? Mereka semua ingin teknologi yang mendukung tujuan mereka, bukan menciptakan masalah baru.</p>
+        <p data-lang="en" class="active">Our project process is pretty straightforward. First, we listen. We want to understand what you are trying to achieve, what your budget looks like, and what your timeline is. Then we audit your current setup (if any) and propose a solution that makes sense. No upselling, no pushing products you do not need. Once you give us the green light, our team gets to work and keeps you updated throughout. After deployment, we do not disappear — we stick around for training, support, and optimization.</p>
+        <p data-lang="id">Proses proyek kami cukup mudah. Pertama, kami dengarkan. Kami ingin memahami apa yang Anda coba capai, seperti apa anggaran Anda, dan timeline seperti apa. Kemudian kami audit setup Anda saat ini (jika ada) dan usulkan solusi yang masuk akal. Tidak ada upselling, tidak ada memaksakan produk yang tidak Anda butuhkan. Setelah Anda beri lampu hijau, tim kami bekerja dan terus mengabari Anda. Setelah deployment, kami tidak menghilang — kami tetap ada untuk training, dukungan, dan optimasi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Get in <span>Touch</span></h2>
+        <h2 data-lang="id">Hubungi <span>Kami</span></h2>
+        <p data-lang="en">Ready to discuss your project? Reach out to our sales team. We usually respond within a few hours, definitely within 24 hours. And yes, we actually read your message before replying.</p>
+        <p data-lang="id">Siap membahas proyek Anda? Hubungi tim sales kami. Kami biasanya merespons dalam beberapa jam, pastinya dalam 24 jam. Dan ya, kami benar-benar membaca pesan Anda sebelum membalas.</p>
+      </div>
+      <a href="mailto:sales@gandooz.com" class="contact-email">✉ sales@gandooz.com</a>
+      <p style="margin-top:1.5rem;color:var(--text-muted);font-size:0.9rem;max-width:500px;margin-left:auto;margin-right:auto;" data-lang="en">We typically respond within 24 hours. For urgent issues, mention "URGENT" in the subject line and we will prioritize it.</p>
+      <p style="margin-top:1.5rem;color:var(--text-muted);font-size:0.9rem;max-width:500px;margin-left:auto;margin-right:auto;" data-lang="id">Kami biasanya merespons dalam 24 jam. Untuk isu mendesak, sebutkan "URGENT" di subject line dan kami akan memprioritaskannya.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> PT. Gandooz Solusi Aplikasi. All rights reserved.</p>
+      <p style="margin-top:0.5rem;"><a href="index.html">← Back to Daddy's Sports Hub</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Init default language
+    setLang('en');
+
+    function setLang(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.classList.toggle('active', el.dataset.lang === lang);
+      });
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+      document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+    }
+
+    // Generate random hyperspeed lines
+    const hyperspeedContainer = document.getElementById('hyperspeed');
+    for (let i = 0; i < 20; i++) {
+      const line = document.createElement('div');
+      line.className = 'hyperspeed-line';
+      line.style.left = Math.random() * 100 + '%';
+      line.style.height = (20 + Math.random() * 80) + 'px';
+      line.style.animationDuration = (1 + Math.random() * 3) + 's';
+      line.style.animationDelay = Math.random() * 5 + 's';
+      hyperspeedContainer.appendChild(line);
+    }
+  </script>
+
+</body>
+</html>

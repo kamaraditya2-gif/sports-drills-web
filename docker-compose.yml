@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  gandooz-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gandooz-landing
+    ports:
+      - "8088:80"
+    restart: unless-stopped

@@ -256,8 +256,8 @@
   // AI GENERATE FROM ADMIN
   // ============================================
   window.adminGenerateDrill = async function(sport, topic, difficulty) {
-    if (!hasGeminiKey()) {
-      showToast('API Key Gemini belum di-setting', 'error');
+    if (!hasAIKey()) {
+      showToast('API Key Deepseek belum di-setting', 'error');
       return null;
     }
     try {
@@ -273,8 +273,8 @@
   };
 
   window.adminGenerateNews = async function(category, topic) {
-    if (!hasGeminiKey()) {
-      showToast('API Key Gemini belum di-setting', 'error');
+    if (!hasAIKey()) {
+      showToast('API Key Deepseek belum di-setting', 'error');
       return null;
     }
     try {

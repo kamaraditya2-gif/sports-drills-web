@@ -4,6 +4,8 @@
  * Bisa di-override via localStorage (admin panel)
  */
 
+const CONTENT_VERSION = '2026-05-22-v1';
+
 const DEFAULT_CONTENT = {
   drills: [
     {
@@ -13,7 +15,7 @@ const DEFAULT_CONTENT = {
       difficulty: "intermediate",
       duration: "20 menit",
       equipment: "Bola basket, cones",
-      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
+      image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600",
       excerpt: "Latihan crossover dribble untuk meningkatkan kemampuan ball handling dan mengelabui defender dengan gerakan cepat.",
       description: "Crossover dribble adalah salah satu move fundamental dalam basket yang wajib dikuasai setiap pemain. Drill ini dirancang untuk melatih koordinasi tangan, timing, dan kemampuan mengelabui lawan.",
       steps: [
@@ -27,7 +29,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Selalu jaga dribble di bawah lutut untuk kontrol maksimal. Gunakan fingertips, bukan telapak tangan.",
       date: "2026-05-21",
-      views: 1247
+      views: 1247,
+      youtubeUrl: ""
     },
     {
       id: "drill-basket-002",
@@ -36,7 +39,7 @@ const DEFAULT_CONTENT = {
       difficulty: "beginner",
       duration: "15 menit",
       equipment: "Bola basket, ring",
-      image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600",
+      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
       excerpt: "Drill form shooting untuk membangun muscle memory tembakan tiga angka yang konsisten dan akurat.",
       description: "Form shooting adalah fondasi dari setiap tembakan yang akurat. Drill ini fokus pada mekanik tubuh yang benar untuk three-point shot.",
       steps: [
@@ -50,7 +53,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Konsistensi lebih penting daripada kecepatan. Fokus pada repeatable form setiap tembakan.",
       date: "2026-05-21",
-      views: 2103
+      views: 2103,
+      youtubeUrl: ""
     },
     {
       id: "drill-basket-003",
@@ -59,7 +63,7 @@ const DEFAULT_CONTENT = {
       difficulty: "advanced",
       duration: "25 menit",
       equipment: "Cones, agility ladder",
-      image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=600",
+      image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600",
       excerpt: "Latihan defensive slide intensif dengan agility ladder untuk meningkatkan lateral quickness dan stance.",
       description: "Defense memenangkan pertandingan. Drill ini menggabungkan footwork agility ladder dengan defensive stance untuk melatih reaksi cepat dalam menjaga lawan.",
       steps: [
@@ -73,7 +77,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Jangan pernah menyilangkan kaki saat defensive slide. Tetap di atas kaki dengan base lebar.",
       date: "2026-05-20",
-      views: 892
+      views: 892,
+      youtubeUrl: ""
     },
     {
       id: "drill-futsal-001",
@@ -96,7 +101,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Gunakan body feint dan change of pace. Di futsal, satu langkah cepat bisa membuat perbedaan besar.",
       date: "2026-05-21",
-      views: 1567
+      views: 1567,
+      youtubeUrl: ""
     },
     {
       id: "drill-futsal-002",
@@ -119,7 +125,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Komunikasi verbal sangat penting. Panggil nama sebelum menerima bola.",
       date: "2026-05-20",
-      views: 1345
+      views: 1345,
+      youtubeUrl: ""
     },
     {
       id: "drill-futsal-003",
@@ -142,7 +149,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Selalu jaga weight forward di bola kaki. Jangan pernah flat-footed saat menunggu tembakan.",
       date: "2026-05-19",
-      views: 723
+      views: 723,
+      youtubeUrl: ""
     },
     {
       id: "drill-padel-001",
@@ -165,7 +173,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Sentuh bola di depan body dengan raket face terbuka. Jangan pukul terlalu keras.",
       date: "2026-05-21",
-      views: 1890
+      views: 1890,
+      youtubeUrl: ""
     },
     {
       id: "drill-padel-002",
@@ -174,7 +183,7 @@ const DEFAULT_CONTENT = {
       difficulty: "advanced",
       duration: "25 menit",
       equipment: "Raket padel, bola, basket",
-      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600",
+      image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600",
       excerpt: "Latihan bandeja smash, teknik khas padel yang memadukan lob defensif dengan smash ofensif.",
       description: "Bandeja adalah salah satu shot paling spektakular dalam padel. Drill ini memecah teknik kompleks menjadi langkah-langkah yang bisa dipraktikkan.",
       steps: [
@@ -188,7 +197,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Timing adalah segalanya. Bukan tentang power, tapi tentang placement dan spin.",
       date: "2026-05-20",
-      views: 1123
+      views: 1123,
+      youtubeUrl: ""
     },
     {
       id: "drill-voli-001",
@@ -211,7 +221,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Fokus pada toss yang konsisten. Toss yang buruk = serve yang buruk.",
       date: "2026-05-21",
-      views: 1456
+      views: 1456,
+      youtubeUrl: ""
     },
     {
       id: "drill-voli-002",
@@ -220,7 +231,7 @@ const DEFAULT_CONTENT = {
       difficulty: "intermediate",
       duration: "20 menit",
       equipment: "Bola voli",
-      image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600",
+      image: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600",
       excerpt: "Latihan pepper 3 orang untuk melatih passing, setting, dan hitting dalam rotasi yang continuous.",
       description: "Pepper adalah latihan klasik voli yang melatih semua fundamental skill. Versi 3 orang menambahkan kompleksitas komunikasi dan rotasi.",
       steps: [
@@ -234,7 +245,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Komunikasikan siapa yang ambil bola. Di voli, bola di tengah adalah bola setter.",
       date: "2026-05-19",
-      views: 987
+      views: 987,
+      youtubeUrl: ""
     },
     {
       id: "drill-atletik-001",
@@ -257,7 +269,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Reaksi terhadap starter gun, bukan suara. Anticipation bisa mengakibatkan false start.",
       date: "2026-05-21",
-      views: 1678
+      views: 1678,
+      youtubeUrl: ""
     },
     {
       id: "drill-atletik-002",
@@ -266,7 +279,7 @@ const DEFAULT_CONTENT = {
       difficulty: "advanced",
       duration: "25 menit",
       equipment: "Hurdles 5 buah",
-      image: "https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=600",
+      image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600",
       excerpt: "Latihan ritme hurdle untuk melatih 3-step rhythm yang konsisten dan efisien dalam lari gawang.",
       description: "Hurdling adalah tentang ritme. Drill ini memprogram otak dan kaki untuk 3-step pattern yang merupakan holy grail hurdle racing.",
       steps: [
@@ -280,7 +293,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Jangan lompat, hurdle. Lead leg harus flat dan horizontal, bukan naik tinggi.",
       date: "2026-05-20",
-      views: 834
+      views: 834,
+      youtubeUrl: ""
     },
     {
       id: "drill-atletik-003",
@@ -303,7 +317,8 @@ const DEFAULT_CONTENT = {
       ],
       tips: "Landing harus soft dan quiet. Jika landing keras, box terlalu tinggi. Prioritaskan landing mechanics.",
       date: "2026-05-19",
-      views: 1234
+      views: 1234,
+      youtubeUrl: ""
     }
   ],
   
@@ -317,6 +332,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-21",
       readTime: "4 menit",
       views: 4521,
+      youtubeUrl: "",
       content: `<p>Los Angeles Lakers sedang mempersiapkan strategi agresif untuk bursa transfer musim panas ini. Menurut sumber internal, manajemen Lakers telah mengadakan pertemuan rahasia dengan perwakilan beberapa pemain bintang yang akan menjadi free agent.</p>
       <p>General Manager Lakers, Rob Pelinka, dikabarkan telah menyusun daftar target prioritas yang mencakup posisi wing defender dan shooter berkualitas. "Kami butuh pemain yang bisa memperkuat defense perimeter sekaligus membuka spacing di offense," ujar sumber yang dekat dengan tim.</p>
       <p>Salah satu nama yang paling santer dibicarakan adalah bintang muda dari Eastern Conference yang musim ini mencetak rata-rata 24.5 poin per game. Jika transfer ini terwujud, Lakers diperkirakan akan kembali menjadi kandidat kuat juara.</p>
@@ -331,6 +347,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-20",
       readTime: "5 menit",
       views: 8234,
+      youtubeUrl: "",
       content: `<p>Timnas Futsal Indonesia akhirnya memutus puasa tiket Piala Asia setelah terakhir kali tampil pada edisi 2018. Kemenangan 3-2 atas Vietnam di Stadion Gelora Bung Karno semalam menjadi momen bersejarah bagi futsal Tanah Air.</p>
       <p>Evan Soumilena kembali menjadi pahlawan dengan mencetak brace, termasuk gol penentu di menit ke-38. "Ini untuk Indonesia. Kami berjuang untuk 270 juta rakyat Indonesia," ucap Evan dengan mata berkaca-kaca usai pertandingan.</p>
       <p>Pelatih kepala Hector Souto memuji performa anak asuhnya yang tetap tenang meski Vietnam sempat menyamakan kedudukan 2-2. "Mentalitas tim ini luar biasa. Mereka tidak menyerah meski dalam tekanan," tutur Souto.</p>
@@ -345,6 +362,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-19",
       readTime: "3 menit",
       views: 6789,
+      youtubeUrl: "",
       content: `<p>Fernando Alonso kembali menjadi sorotan, tapi bukan karena mobil balap. Pebalap legendaris asal Spanyol ini baru-baru ini terlihat berlatih padel selama 4 jam di klub eksklusif di Barcelona.</p>
       <p>Menurut pengamat, Alonso menunjukkan kemajuan signifikan dalam tekniknya. "Dia punya reflex yang luar biasa, tidak heran karena dia pembalap F1. Tapi yang mengejutkan adalah touch-nya yang lembut," kata pelatih padel lokal.</p>
       <p>Alonso sendiri menanggapi dengan santai di media sosial: "Saya hanya mencari cara untuk tetap kompetitif setelah pensiun nanti. Padel adalah cinta baru saya."</p>
@@ -359,6 +377,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-18",
       readTime: "4 menit",
       views: 5678,
+      youtubeUrl: "",
       content: `<p>Red Volley Bandung menciptakan sejarah. Klub yang baru berusia 5 tahun ini berhasil menjadi juara Proliga 2026 setelah mengalahkan Jakarta Pertamina Fastron 3-2 (25-22, 20-25, 25-20, 22-25, 15-12) di GOR Amongrogo, Solo.</p>
       <p>MVP final jatuh kepada opposite hitter asal Brasil, Ricardo Lucarelli, yang mencetak 28 poin. "Ini adalah momen terindah dalam karir saya. Fans Bandung luar biasa," ucap Lucarelli.</p>
       <p>Pelatih Red Volley, Samsul Jais, menangis haru saat wawancara pasca pertandingan. "Kami membangun tim ini dari nol. Lima tahun lalu, kami bahkan tidak punya gym sendiri. Sekarang kami juara," katanya.</p>
@@ -373,6 +392,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-17",
       readTime: "3 menit",
       views: 9234,
+      youtubeUrl: "",
       content: `<p>Lalu Muhammad Zohri akhirnya memecahkan rekor nasional 100 meter putra Indonesia yang bertahan sejak 2006. Di Stadion Supachalasai, Bangkok, Zohri mencatat waktu 10.03 detik, mengungguli rekor lama Suryo Agung Wibowo (10.13 detik).</p>
       <p>Zohri tampil sempurna dari start hingga finish. Di angin +1.2 m/s, dia keluar dari block dengan reaction time 0.128 detik dan mempertahankan keunggulan hingga garis finish.</p>
       <p>"Saya sudah menunggu momen ini selama 3 tahun. Setiap hari saya membayangkan memecahkan rekor ini," ucap Zohri dengan wajah bahagia.</p>
@@ -387,6 +407,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-21",
       readTime: "2 menit",
       views: 12456,
+      youtubeUrl: "",
       content: `<p>Gosip panas datang dari Eropa. Seorang bek tengah berkewarganegaraan Argentina yang musim ini tampil 28 kali untuk klub Serie A dilaporkan sedang dalam negosiasi serius dengan salah satu klub besar Liga 1 Indonesia.</p>
       <p>Pemain yang berusia 32 tahun ini kontraknya berakhir di musim panas dan belum memperpanjang dengan klub lamanya. Agennya dikabarkan sudah terbang ke Jakarta minggu lalu.</p>
       <p>Jika transfer ini terwujud, dia akan menjadi pemain dengan nilai pasar tertinggi yang pernah datang ke Liga Indonesia. Saat ini nilai pasarnya diperkirakan 3.5 juta euro.</p>
@@ -397,10 +418,11 @@ const DEFAULT_CONTENT = {
       title: "NBA Draft 2026: Bintang Muda dari Senegal Jadi Top Pick",
       category: "basket",
       excerpt: "Center 19 tahun asal Senegal, Amadou Diallo, diprediksi akan menjadi first overall pick di NBA Draft 2026 berkat kombinasi size dan skill yang langka.",
-      image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600",
+      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
       date: "2026-05-16",
       readTime: "5 menit",
       views: 3456,
+      youtubeUrl: "",
       content: `<p>Amadou Diallo, center 7'1" dari Senegal, sedang menjadi buah bibir di kalangan NBA scouts. Pemain berusia 19 tahun ini memiliki kombinasi atletis dan skill yang mengingatkan banyak orang pada prime Hakeem Olajuwon.</p>
       <p>Di musim terakhirnya di NCAA, Diallo mencatat rata-rata 18.5 poin, 11.2 rebound, dan 3.8 block per game. Yang lebih mengesankan adalah shooting percentage-nya: 58% dari field dan 72% dari free throw.</p>
       <p>"Saya belum pernah melihat big man seusia ini dengan footwork sebagus dia," kata salah satu NBA scout yang tidak ingin disebutkan namanya.</p>
@@ -411,10 +433,11 @@ const DEFAULT_CONTENT = {
       title: "World Padel Tour 2026: Jadwal dan Lokasi Baru Diumumkan",
       category: "padel",
       excerpt: "World Padel Tour merilis jadwal lengkap musim 2026 dengan tambahan 3 stop baru di Asia termasuk Singapura dan Tokyo.",
-      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600",
+      image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600",
       date: "2026-05-15",
       readTime: "3 menit",
       views: 2345,
+      youtubeUrl: "",
       content: `<p>World Padel Tour (WPT) akhirnya merilis jadwal lengkap untuk musim 2026. Total akan ada 18 turnamen di 15 negara, dengan total prize pool mencapai 15 juta euro.</p>
       <p>Yang menarik, WPT menambahkan 3 stop baru di Asia: Singapura (April), Tokyo (Juli), dan Bali (Oktober). Ini merupakan ekspansi terbesar WPT ke pasar Asia sepanjang sejarah.</p>
       <p>"Asia adalah masa depan padel. Kami melihat pertumbuhan pesat di Indonesia, Jepang, dan Thailand," kata CEO WPT, Mario Hernandez.</p>
@@ -425,10 +448,11 @@ const DEFAULT_CONTENT = {
       title: "Teknik Baru Serve Underhand yang Menggemparkan Voli Dunia",
       category: "voli",
       excerpt: "Sebuah studi dari University of Texas mengungkapkan bahwa serve underhand dengan spin tertentu bisa meningkatkan ace percentage hingga 40%.",
-      image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600",
+      image: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600",
       date: "2026-05-14",
       readTime: "4 menit",
       views: 4567,
+      youtubeUrl: "",
       content: `<p>Sebuah penelitian dari University of Texas menggemparkan dunia voli. Studi tersebut menemukan bahwa serve underhand dengan kombinasi topspin dan sidespin tertentu bisa meningkatkan ace percentage hingga 40% dibandingkan serve overhand standar.</p>
       <p>Dr. Sarah Johnson, peneliti utama, menjelaskan bahwa bola dengan spin kombinasi tersebut bergerak tidak terduga saat melewati net. "Passer sulit memprediksi arah bounce, terutama di lapangan dengan pencahayaan yang kurang ideal," jelasnya.</p>
       <p>Beberapa tim NCAA sudah mulai mengadopsi teknik ini. Tim voli putri Stanford mencatat peningkatan ace dari 8% menjadi 14% setelah mengimplementasikan serve underhand ini.</p>
@@ -443,6 +467,7 @@ const DEFAULT_CONTENT = {
       date: "2026-05-13",
       readTime: "4 menit",
       views: 7890,
+      youtubeUrl: "",
       content: `<p>Akhirnya futsal Indonesia akan memiliki liga profesional. PSSI bersama PT LIB secara resmi mengumumkan pembentukan Liga Futsal Profesional Indonesia (LFPI) yang akan kickoff pada Oktober 2026.</p>
       <p>Liga akan diikuti oleh 12 klub dari berbagai kota besar di Indonesia. Setiap klub wajib memiliki akademi futsal U-15 dan U-18 sebagai syarat lisensi.</p>
       <p>"Ini adalah langkah besar untuk futsal Indonesia. Dengan liga profesional, kami bisa meningkatkan kualitas kompetisi dan menarik sponsor," kata Ketum PSSI, Erick Thohir.</p>
@@ -453,10 +478,11 @@ const DEFAULT_CONTENT = {
       title: "Atletik Indonesia Targetkan 3 Emas di Asian Games 2026",
       category: "atletik",
       excerpt: "KONI menetapkan target ambisius untuk cabang atletik di Asian Games 2026 Jepang: minimal 3 medali emas dari 5 nomor unggulan.",
-      image: "https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=600",
+      image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600",
       date: "2026-05-12",
       readTime: "3 menit",
       views: 3456,
+      youtubeUrl: "",
       content: `<p>KONI Pusat menetapkan target ambisius untuk cabang atletik di Asian Games 2026 yang akan berlangsung di Nagoya, Jepang. Targetnya: minimal 3 medali emas dari 5 nomor unggulan.</p>
       <p>Lima nomor unggulan tersebut adalah: lari 100m putra (Lalu Muhammad Zohri), lompat tinggi putri (Maria Natalia Londa), tolak peluru putra, lari estafet 4x100m putra, dan lompat galah putri.</p>
       <p>"Kami sudah mempersiapkan ini sejak 2023. Program training camp di Australia dan Amerika Serikat sudah berjalan," kata Sekjen KONI.</p>
@@ -467,10 +493,11 @@ const DEFAULT_CONTENT = {
       title: "Transfer: Bintang Basket Liga Indonesia Pindah ke Thailand",
       category: "transfer",
       excerpt: "Guard andalan Satria Muda, Xavier Ford, resmi bergabung dengan klub Thailand Basketball League setelah 5 tahun membela SM.",
-      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
+      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600",
       date: "2026-05-11",
       readTime: "3 menit",
       views: 5678,
+      youtubeUrl: "",
       content: `<p>Xavier Ford, guard berusia 28 tahun yang menjadi andalan Satria Muda Pertamina selama 5 musim terakhir, resmi meninggalkan Indonesia. Ford menandatangani kontrak 2 tahun dengan Mono Vampire Basketball Club di Thailand.</p>
       <p>"Ini keputusan sulit. Satria Muda adalah keluarga saya. Tapi saya ingin tantangan baru dan pengalaman bermain di luar negeri," ucap Ford dalam konferensi pers perpisahan.</p>
       <p>Selama 5 tahun di Satria Muda, Ford mencetak rata-rata 22.3 poin, 6.5 assist, dan 4.1 rebound per game. Dia juga membantu SM memenangkan 3 gelar juara IBL.</p>
@@ -481,63 +508,63 @@ const DEFAULT_CONTENT = {
   coaches: [
     {
       id: "coach-001",
-      name: "Coach Bambang Sutrisno",
-      specialty: "Basket - Guard Development",
+      name: "Dedi Mawardi",
+      specialty: "Basket & Fitness",
       image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400",
-      bio: "Mantan point guard timnas Indonesia dengan 15 tahun pengalaman coaching. Spesialisasi dalam development guard skills dan basketball IQ.",
-      certifications: ["FIBA Level 3", "USA Basketball Gold", "NASM-CPT"],
-      experience: "15 tahun",
-      social: { instagram: "@coachbambang", youtube: "BambangBasket" }
+      bio: "Pelatih basket dan fitness dengan pengalaman membina atlet muda di berbagai kompetisi daerah. Spesialisasi dalam fundamental skills, strength conditioning, dan physical preparation untuk pemain basket.",
+      certifications: ["PERBASI Coach License", "Fitness Trainer Certified", "Strength & Conditioning Specialist"],
+      experience: "12 tahun",
+      social: { instagram: "@dedimawardi_coach", youtube: "DediMawardiBasket" }
     },
     {
       id: "coach-002",
-      name: "Coach Sarah Wijaya",
-      specialty: "Basket - Shooting & Analytics",
+      name: "Muhammad Iqbal CGR",
+      specialty: "Basket & Fitness",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400",
-      bio: "Pemegang rekor 3-point percentage terbaik dalam sejarah WNBL Indonesia. Saat ini menjadi shooting consultant untuk 3 klub IBL.",
-      certifications: ["FIBA Level 2", "ShotMechanics Pro", "Data Analytics Sport"],
+      bio: "Coach berlisensi CGR dengan fokus pada player development dan athletic performance. Ahli dalam shooting mechanics, footwork drills, serta program fitness yang dirancang khusus untuk atlet basket.",
+      certifications: ["CGR Certified Coach", "PERBASI Level 2", "NSCA-CPT"],
       experience: "8 tahun",
-      social: { instagram: "@sarahshoots", youtube: "SarahWijayaHoops" }
+      social: { instagram: "@iqbalcgr_basket", youtube: "IqbalCGRTraining" }
     },
     {
       id: "coach-003",
-      name: "Coach Diego Martinez",
-      specialty: "Futsal - Tactical Analysis",
+      name: "Rillo Arafah Narwis CGR",
+      specialty: "Basket & Fitness",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
-      bio: "Pelatih asal Spanyol dengan pengalaman 10 tahun di La Liga Nacional de Futbol Sala. Ahli dalam taktik press dan set piece.",
-      certifications: ["UEFA A License Futsal", "LNFS Pro Coach", "GPS Performance"],
-      experience: "12 tahun",
-      social: { instagram: "@diego_futsal", youtube: "DiegoFutsalTactics" }
+      bio: "Pelatih bersertifikasi CGR yang memiliki passion dalam mengembangkan talenta muda. Spesialisasi defensive tactics, agility training, dan program latihan fungsional untuk meningkatkan performa di lapangan.",
+      certifications: ["CGR Certified Coach", "PERBASI Level 2", "Agility & Speed Specialist"],
+      experience: "10 tahun",
+      social: { instagram: "@rilloan_coach", youtube: "RilloNarwisDrills" }
     },
     {
       id: "coach-004",
-      name: "Coach Laura Gonzalez",
-      specialty: "Padel - Doubles Strategy",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
-      bio: "Ex-professional WPT player dari Argentina yang pernah ranking top 20 dunia. Spesialisasi dalam doubles strategy dan court positioning.",
-      certifications: ["WPT Certified Coach", "A1 Padel Coach", "RPT Master"],
-      experience: "10 tahun",
-      social: { instagram: "@laurapadelpro", youtube: "LauraGonzalezPadel" }
+      name: "Ricardo Orlando Uneputty",
+      specialty: "Basket & Fitness",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+      bio: "Pelatih basket dan strength coach dengan latar belakang atlet kompetitif. Ahli dalam program hypertrophy untuk atlet, recovery protocols, dan teknik rebounding yang efektif di kedua sisi lapangan.",
+      certifications: ["PERBASI Coach License", "ACE Personal Trainer", "Performance Enhancement Specialist"],
+      experience: "9 tahun",
+      social: { instagram: "@ricardouneputty", youtube: "RicardoUneputtyBasket" }
     },
     {
       id: "coach-005",
-      name: "Coach Ahmad Rizal",
-      specialty: "Voli - Block & Defense",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      bio: "Mantan middle blocker timnas Indonesia dengan tinggi 205cm. Ahli dalam teknik block timing dan sistem pertahanan zone.",
-      certifications: ["FIVB Level 2", "AVC Coach", "Strength & Conditioning"],
-      experience: "14 tahun",
-      social: { instagram: "@ahmadvolicoach", youtube: "RizalVolleyball" }
+      name: "Juan Lauren",
+      specialty: "Basket & Fitness",
+      image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400",
+      bio: "Pelatih yang fokus pada shooting development dan perimeter skills. Memiliki metode unik dalam melatih footwork shooting dan catch-and-shoot yang telah terbukti meningkatkan akurasi tembakan pemain secara signifikan.",
+      certifications: ["PERBASI Coach License", "Shooting Coach Certified", "Youth Development Specialist"],
+      experience: "7 tahun",
+      social: { instagram: "@juanlauren_coach", youtube: "JuanLaurenSkills" }
     },
     {
       id: "coach-006",
-      name: "Coach Patricia Okafor",
-      specialty: "Atletik - Sprint & Hurdles",
-      image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400",
-      bio: "Mantan sprinter Nigeria yang berkompetisi di Olimpiade 2016. Sekarang menjadi head coach sprint & hurdles untuk pelatnas Indonesia.",
-      certifications: ["World Athletics Coach", "IAAF Level 3", "USATF Elite"],
+      name: "Falcony Hang Tuah",
+      specialty: "Basket & Fitness",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
+      bio: "Pelatih dengan filosofi disiplin dan kerja keras. Spesialisasi dalam conditioning program, transition offense, dan defensive pressure. Dikenal sebagai mentor yang mampu membentuk karakter atlet holistik di dalam dan luar lapangan.",
+      certifications: ["PERBASI Coach License", "NASM-CPT", "Mental Toughness Coach"],
       experience: "11 tahun",
-      social: { instagram: "@patricia_sprint", youtube: "CoachPatriciaSprint" }
+      social: { instagram: "@falconyht_basket", youtube: "FalconyHangTuah" }
     }
   ]
 };
@@ -545,6 +572,12 @@ const DEFAULT_CONTENT = {
 // Load content from localStorage or use default
 function loadContent() {
   try {
+    const storedVersion = localStorage.getItem('sportsDrillsContentVersion');
+    if (storedVersion !== CONTENT_VERSION) {
+      localStorage.removeItem('sportsDrillsContent');
+      localStorage.setItem('sportsDrillsContentVersion', CONTENT_VERSION);
+      return DEFAULT_CONTENT;
+    }
     const stored = localStorage.getItem('sportsDrillsContent');
     if (stored) {
       return JSON.parse(stored);
@@ -566,28 +599,11 @@ function saveContent(content) {
   }
 }
 
-// Get drills for today (rotates based on date)
+// Get featured drills (static, no daily rotation)
 function getDrillsToday() {
   const content = loadContent();
-  const today = new Date().toISOString().split('T')[0];
-  
-  // Get one drill per sport for today
-  const sports = ['basket', 'futsal', 'padel', 'voli', 'atletik'];
-  const todayDrills = [];
-  
-  sports.forEach((sport, index) => {
-    const sportDrills = content.drills.filter(d => d.sport === sport);
-    if (sportDrills.length > 0) {
-      // Use date-based rotation
-      const dayIndex = parseInt(today.replace(/-/g, '')) % sportDrills.length;
-      const drill = { ...sportDrills[dayIndex] };
-      drill.isToday = true;
-      drill.todayDate = today;
-      todayDrills.push(drill);
-    }
-  });
-  
-  return todayDrills;
+  // Return first 5 drills consistently, no date-based rotation
+  return content.drills.slice(0, 5).map(drill => ({ ...drill, isToday: true }));
 }
 
 // Get latest news

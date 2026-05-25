@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
   <!-- Login Screen -->
@@ -182,13 +182,13 @@
             <div class="admin-card">
               <h3>🤖 AI Content Generator</h3>
               <div class="form-group">
-                <label class="form-label">Google Gemini API Key</label>
-                <input type="password" id="gemini-key-input" class="form-input" placeholder="Masukkan API Key">
+                <label class="form-label">Deepseek API Key</label>
+                <input type="password" id="ai-key-input" class="form-input" placeholder="Masukkan API Key">
                 <p class="form-hint">API Key disimpan di browser (localStorage). Tidak dikirim ke server.</p>
               </div>
               <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-                <button class="btn btn-primary" onclick="saveGeminiKeyFromInput()">💾 Simpan Key</button>
-                <button class="btn btn-secondary" onclick="testGeminiKey()">🧪 Test Key</button>
+                <button class="btn btn-primary" onclick="saveAIKeyFromInput()">💾 Simpan Key</button>
+                <button class="btn btn-secondary" onclick="testAIKey()">🧪 Test Key</button>
               </div>
               <div id="ai-status-area" style="margin-top:1rem;"></div>
             </div>
@@ -268,10 +268,10 @@
     </div>
   </div>
 
-  <script src="js/data.js?v=2"></script>
-  <script src="js/ai-content.js?v=2"></script>
-  <script src="js/admin.js?v=2"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/site-data.js?v=6"></script>
+  <script src="js/ai-content.js?v=6"></script>
+  <script src="js/admin.js?v=6"></script>
+  <script src="js/main.js?v=6"></script>
   <script>
     (function() {
       // Check login
@@ -369,9 +369,9 @@
       reader.readAsText(file);
     }
 
-    function saveGeminiKeyFromInput() {
-      const key = document.getElementById('gemini-key-input').value;
-      setGeminiKey(key);
+    function saveAIKeyFromInput() {
+      const key = document.getElementById('ai-key-input').value;
+      setAIKey(key);
       showToast('API Key disimpan!', 'success');
     }
 

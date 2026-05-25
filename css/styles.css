@@ -307,6 +307,7 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-8 { grid-template-columns: repeat(8, 1fr); }
 
 /* ============================================
    HEADER & NAVIGATION
@@ -1458,6 +1459,44 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 }
 
 /* ============================================
+   COMPACT CARDS (8-column grid)
+   ============================================ */
+.compact-card .card-image img {
+  height: 90px;
+}
+
+.compact-card .card-title {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.compact-card .card-meta {
+  font-size: 0.65rem;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.compact-card .card-content {
+  padding: 0.6rem;
+}
+
+.compact-card .badge {
+  font-size: 0.55rem;
+  padding: 0.1rem 0.4rem;
+}
+
+.compact-card .sport-badge {
+  top: 0.4rem;
+  left: 0.4rem;
+}
+
+.compact-card .difficulty-badge {
+  top: 0.4rem;
+  right: 0.4rem;
+}
+
+/* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 1024px) {
@@ -1486,8 +1525,9 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
+  .grid-4,
+  .grid-8 {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1517,8 +1557,17 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   
   .grid-2,
   .grid-3,
-  .grid-4 {
-    grid-template-columns: 1fr;
+  .grid-4,
+  .grid-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .compact-card .card-image img {
+    height: 110px;
+  }
+  
+  .compact-card .card-title {
+    font-size: 0.8rem;
   }
   
   .footer-grid {

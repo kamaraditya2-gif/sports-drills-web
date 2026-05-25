@@ -4,7 +4,7 @@
 
 FTP_USER="daddyssp"
 FTP_SERVER="daddys-sporthub.com"
-FTP_REMOTE_DIR="public_html/"
+FTP_REMOTE_DIR="/public_html/"
 
 # Use environment variable for password (safer than command line)
 export PASS='+E]7SGc8lX82rq'
