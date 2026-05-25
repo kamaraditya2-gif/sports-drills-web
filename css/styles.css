@@ -1642,3 +1642,49 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
     padding: 1.5rem;
   }
 }
+
+/* ============================================
+   CLERK AUTH STYLES
+   ============================================ */
+
+.clerk-auth-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clerk-signin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--gradient-hero);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.clerk-signin-btn:hover {
+  opacity: 0.9;
+}
+
+/* Clerk sign-in mount di admin */
+#clerk-signin-mount {
+  min-height: 400px;
+}
+
+#clerk-signin-mount .cl-rootBox {
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .clerk-auth-container {
+    display: none;
+  }
+}
