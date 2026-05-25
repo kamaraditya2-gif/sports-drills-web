@@ -286,6 +286,7 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .card-excerpt {
@@ -594,6 +595,7 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   border-top: 1px solid var(--border);
   font-size: 0.75rem;
   color: var(--text-muted);
+  flex-wrap: wrap;
 }
 
 .drill-info span {
@@ -1281,7 +1283,8 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-width: 300px;
+  min-width: 0;
+  max-width: calc(100vw - 2rem);
   animation: slideIn 0.3s ease;
 }
 
@@ -1527,7 +1530,7 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   
   .grid-4,
   .grid-8 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1556,10 +1559,13 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   }
   
   .grid-2,
-  .grid-3,
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .grid-4,
   .grid-8 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   
   .compact-card .card-image img {
@@ -1641,6 +1647,13 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
   .admin-login-box {
     padding: 1.5rem;
   }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-8 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================================
@@ -1686,5 +1699,34 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 @media (max-width: 768px) {
   .clerk-auth-container {
     display: none;
+  }
+}
+
+/* ============================================
+   MOBILE SCROLL CARDS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .scroll-cards {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  
+  .scroll-cards::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scroll-cards > * {
+    min-width: 260px;
+    flex-shrink: 0;
+  }
+  
+  .scroll-cards .card {
+    margin-bottom: 0;
   }
 }
