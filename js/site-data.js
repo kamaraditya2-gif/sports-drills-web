@@ -538,12 +538,12 @@ const DEFAULT_CONTENT = {
     },
     {
       id: "coach-004",
-      name: "Ricardo Orlando Uneputty",
-      specialty: "Basket & Fitness",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      bio: "Pelatih basket dan strength coach dengan latar belakang atlet kompetitif. Ahli dalam program hypertrophy untuk atlet, recovery protocols, dan teknik rebounding yang efektif di kedua sisi lapangan.",
-      certifications: ["PERBASI Coach License", "ACE Personal Trainer", "Performance Enhancement Specialist"],
-      experience: "9 tahun",
+      name: "Richardo Orlando Uneputty",
+      specialty: "Basket — Point Guard",
+      image: "images/coaches/ricardo-orlando-uneputty.jpg",
+      bio: "Pemain profesional NBL Indonesia untuk Hangtuah Sumsel IM (No. 2 / Point Guard). Lahir di Bekasi, 21 Oktober 1987. Tinggi 164 cm, berat 60 kg. Pengalaman bertahun-tahun di kompetisi basket nasional tingkat tertinggi.",
+      certifications: ["NBL Indonesia Professional Player", "Hangtuah Sumsel IM"],
+      experience: "Player profesional NBL",
       social: { instagram: "@ricardouneputty", youtube: "RicardoUneputtyBasket" }
     },
     {
