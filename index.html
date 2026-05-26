@@ -10,14 +10,79 @@
   <meta property="og:description" content="Portal latihan drill dan berita olahraga terlengkap untuk atlet Indonesia">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.daddys-sporthub.com/">
+  <meta property="og:image" content="https://www.daddys-sporthub.com/images/og-image.jpg">
+  <meta property="og:site_name" content="Daddy's Sports Hub">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daddy's Sports Hub - Latihan & Berita Olahraga">
+  <meta name="twitter:description" content="Portal latihan drill dan berita olahraga terlengkap untuk atlet Indonesia">
+  <meta name="twitter:image" content="https://www.daddys-sporthub.com/images/og-image.jpg">
+
+  <!-- Google Search Console (ganti content dengan kode verifikasi yang diberikan Google) -->
+  <meta name="google-site-verification" content="GOOGLE_SITE_VERIFICATION_CODE">
   <link rel="canonical" href="https://www.daddys-sporthub.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=6">
   <!-- Google AdSense -->
+  <!-- TODO: Ganti ca-pub-XXXXXXXXXXXXXXXX dengan Google AdSense Publisher ID yang sesungguhnya -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsubWFya2V0cGxhY2UuZGFkZHlzLXNwb3J0aHViLmNvbSQ" src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SportsOrganization",
+        "@id": "https://www.daddys-sporthub.com/#organization",
+        "name": "Daddy's Sports Hub",
+        "url": "https://www.daddys-sporthub.com",
+        "description": "Portal latihan drill basket, futsal, padel, voli, dan atletik terlengkap. Berita olahraga, tips dari coach profesional.",
+        "sameAs": [
+          "https://github.com/kamaraditya2-gif"
+        ],
+        "slogan": "Elevate Your Game, Own the Court"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.daddys-sporthub.com/#website",
+        "url": "https://www.daddys-sporthub.com",
+        "name": "Daddy's Sports Hub",
+        "publisher": {
+          "@id": "https://www.daddys-sporthub.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.daddys-sporthub.com/drills.html?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.daddys-sporthub.com/#webpage",
+        "url": "https://www.daddys-sporthub.com/",
+        "name": "Daddy's Sports Hub - Latihan & Berita Olahraga Terlengkap",
+        "isPartOf": {
+          "@id": "https://www.daddys-sporthub.com/#website"
+        },
+        "about": {
+          "@id": "https://www.daddys-sporthub.com/#organization"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://www.daddys-sporthub.com/images/og-image.jpg"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header + Hero -->

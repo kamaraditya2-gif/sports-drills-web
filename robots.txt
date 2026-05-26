@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /data/
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://www.daddys-sporthub.com/sitemap.xml
